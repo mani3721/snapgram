@@ -30,7 +30,7 @@ export default function SignUpForm() {
   const { mutateAsync: createUserAccount, isPending: isCreatingUser } =
     userCreateUserAccount();
 
-  const { mutateAsync: signInAccount, isPending: isSigningIn } =
+  const { mutateAsync: signInAccount, isPending: isSigningInUser } =
     useSignInAccount();
 
   const form = useForm<z.infer<typeof SignUpValidation>>({
@@ -151,7 +151,7 @@ export default function SignUpForm() {
             )}
           />
           <Button type="submit" className="shad-button_primary">
-            {isCreatingUser ? (
+            {isCreatingUser || isSigningInUser || isUserLoading ? (
               <div className="flex-center gap-2">
                 <Loader /> Loading..
               </div>
